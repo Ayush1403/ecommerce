@@ -24,7 +24,6 @@
         <TextView
             android:layout_width="306dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/halant_bold"
             android:text="LEAP TO NEXT STEP"
             android:textColor="@color/black"
             android:textSize="50sp" />
@@ -32,7 +31,6 @@
         <TextView
             android:layout_width="306dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/halant_bold"
             android:text="Sign in to continue"
             android:textSize="20sp" />
         <com.google.android.material.textfield.TextInputLayout
