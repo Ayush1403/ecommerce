@@ -37,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
+                android:id="@+id/signup_email"
                 android:layout_margin="3dp">
 
             </com.google.android.material.textfield.TextInputEditText>
@@ -50,7 +51,23 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="USERNAME"
+                android:hint="Phone Number"
+                android:id="@+id/signup_phone"
+                android:layout_margin="3dp">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:id="@+id/signup_name"
                 android:layout_margin="3dp">
 
             </com.google.android.material.textfield.TextInputEditText>
@@ -66,26 +83,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:id="@+id/signup_password"
                 android:hint="PASSWORD">
 
             </com.google.android.material.textfield.TextInputEditText>
 
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            app:passwordToggleEnabled="true"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="CONFIRM PASSWORD">
 
-            </com.google.android.material.textfield.TextInputEditText>
 
-        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -96,6 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sign Up"
+            android:id="@+id/signup_btn"
             android:backgroundTint="#2F2E30"
             android:textColor="@color/white"
             android:padding="2dp"
@@ -104,7 +110,7 @@
 
         </Button>
         <Button
-            android:id="@+id/goback"
+            android:id="@+id/signup_login_page"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="HAve an account?Login here"

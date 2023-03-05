@@ -37,11 +37,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+           >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="USERNAME"
+                android:hint="EMAIL"
+                android:id="@+id/login_username"
                 android:layout_margin="3dp">
 
             </com.google.android.material.textfield.TextInputEditText>
@@ -51,11 +52,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            app:passwordToggleEnabled="true"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+            app:passwordToggleEnabled="true">
              <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/login_password"
                 android:inputType="textPassword"
                 android:hint="PASSWORD">
 
@@ -78,7 +79,7 @@
             android:layout_marginLeft="240dp"/>
 
         <Button
-            android:id="@+id/sgi"
+            android:id="@+id/login_signin_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sign In"
@@ -90,7 +91,7 @@
 
         </Button>
         <Button
-            android:id="@+id/sgp"
+            android:id="@+id/login_signup_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Dont have account?Create one."
