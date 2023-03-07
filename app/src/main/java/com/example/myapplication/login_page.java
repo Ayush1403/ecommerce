@@ -26,7 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Map;
 
 public class login_page extends AppCompatActivity {
-       Button btn_login,btn_signup;
+       Button btn_login,btn_signup,forget_btn;
        TextInputEditText username,password;
        FirebaseFirestore db;
        FirebaseAuth auth;
@@ -40,40 +40,21 @@ public class login_page extends AppCompatActivity {
         btn_signup= findViewById(R.id.login_signup_btn);
         username=findViewById(R.id.login_username);
         password=findViewById(R.id.login_password);
+        forget_btn=findViewById(R.id.login_forgot_btn);
         db=FirebaseFirestore.getInstance();
         auth=FirebaseAuth.getInstance();
+        forget_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(login_page.this,forgotpassword.class);
+                startActivity(intent);
+            }
+        });
        btn_login.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                siginusingemail();
 
-//               DocumentReference docRef = db.collection("students").document(username.getText().toString());
-//               docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                   @Override
-//                   public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                       if (task.isSuccessful()) {
-//                           DocumentSnapshot document = task.getResult();
-//                           if (document.exists()) {
-//                               Map<String,Object> student=document.getData();
-//                               if (student.get("password").toString().equals(password.getText().toString()))
-//                               {
-////                                   SharedPreferences sp=getSharedPreferences("myquiz",MODE_PRIVATE);
-////                                   SharedPreferences.Editor editor=sp.edit();
-////                                   editor.putString("userid",username.getText().toString());
-////                                   editor.commit();
-//                                   Intent intent=new Intent(login_page.this,MainScreen.class);
-//                                   startActivity(intent);
-//                               }
-//
-//                           } else {
-//
-//                               Toast.makeText(login_page.this, "invalid user", Toast.LENGTH_SHORT).show();
-//                           }
-//                       } else {
-//                           Toast.makeText(login_page.this, "connectivity issue", Toast.LENGTH_SHORT).show();
-//                       }
-//                   }
-//               });
            }
        });
         btn_signup.setOnClickListener(new View.OnClickListener() {

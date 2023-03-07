@@ -75,7 +75,7 @@
             android:background="#0000"
             android:textColor="@color/black"
             android:padding="2dp"
-
+            android:id="@+id/login_forgot_btn"
             android:layout_marginLeft="240dp"/>
 
         <Button
