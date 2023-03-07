@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -27,6 +29,7 @@ public class login_page extends AppCompatActivity {
        Button btn_login,btn_signup;
        TextInputEditText username,password;
        FirebaseFirestore db;
+       FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,45 +41,67 @@ public class login_page extends AppCompatActivity {
         username=findViewById(R.id.login_username);
         password=findViewById(R.id.login_password);
         db=FirebaseFirestore.getInstance();
+        auth=FirebaseAuth.getInstance();
        btn_login.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               DocumentReference docRef = db.collection("students").document(username.getText().toString());
-               docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                   @Override
-                   public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                       if (task.isSuccessful()) {
-                           DocumentSnapshot document = task.getResult();
-                           if (document.exists()) {
-                               Map<String,Object> student=document.getData();
-                               if (student.get("password").toString().equals(password.getText().toString()))
-                               {
-//                                   SharedPreferences sp=getSharedPreferences("myquiz",MODE_PRIVATE);
-//                                   SharedPreferences.Editor editor=sp.edit();
-//                                   editor.putString("userid",username.getText().toString());
-//                                   editor.commit();
-                                   Intent intent=new Intent(login_page.this,MainScreen.class);
-                                   startActivity(intent);
-                               }
+               siginusingemail();
 
-                           } else {
-
-                               Toast.makeText(login_page.this, "invalid user", Toast.LENGTH_SHORT).show();
-                           }
-                       } else {
-                           Toast.makeText(login_page.this, "connectivity issue", Toast.LENGTH_SHORT).show();
-                       }
-                   }
-               });
+//               DocumentReference docRef = db.collection("students").document(username.getText().toString());
+//               docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                   @Override
+//                   public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                       if (task.isSuccessful()) {
+//                           DocumentSnapshot document = task.getResult();
+//                           if (document.exists()) {
+//                               Map<String,Object> student=document.getData();
+//                               if (student.get("password").toString().equals(password.getText().toString()))
+//                               {
+////                                   SharedPreferences sp=getSharedPreferences("myquiz",MODE_PRIVATE);
+////                                   SharedPreferences.Editor editor=sp.edit();
+////                                   editor.putString("userid",username.getText().toString());
+////                                   editor.commit();
+//                                   Intent intent=new Intent(login_page.this,MainScreen.class);
+//                                   startActivity(intent);
+//                               }
+//
+//                           } else {
+//
+//                               Toast.makeText(login_page.this, "invalid user", Toast.LENGTH_SHORT).show();
+//                           }
+//                       } else {
+//                           Toast.makeText(login_page.this, "connectivity issue", Toast.LENGTH_SHORT).show();
+//                       }
+//                   }
+//               });
            }
        });
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent=new Intent(login_page.this,Signup.class);
                 startActivity(intent);
             }
         });
     }
-
+    private void siginusingemail(){
+        auth.signInWithEmailAndPassword(username.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful())
+                {
+                    if(auth.getCurrentUser().isEmailVerified()){
+                        startActivity(new Intent(login_page.this,MainScreen.class));
+                    }
+                    else {
+                        Toast.makeText(login_page.this, "Please Verify your email", Toast.LENGTH_SHORT).show();
+                    }
+                }
+               else {
+                    Toast.makeText(login_page.this, "Invalid Login credentials", Toast.LENGTH_SHORT).show();
+                }
+            }
+  });
+    }
     }
